@@ -33,7 +33,7 @@ npm run build
 NODE_ENV=production PUBLIC_URL=https://your-domain.example npm start
 ```
 
-Production requires HTTPS and your **own** domain. Docker deployment is also supported; mount a private persistent volume and set `DATABASE_PATH` to that volume. See [docs/SELF_HOST.md](docs/SELF_HOST.md).
+Production requires HTTPS and your **own** domain. Docker deployment is also supported; mount a private persistent volume and set `DATABASE_PATH` to that volume. See [SELF_HOST.md](SELF_HOST.md).
 
 ## Testing
 
@@ -46,12 +46,12 @@ npm run audit:community
 npm run verify:offline
 ```
 
-This repository is an **initial community release candidate**, not a security-audited production service. The 7 offline core tests and 112-file syntax scan passed in the RC2 preparation environment; the full build/unit/API/WebKit suites remain unverified without npm registry access. **Do not expose real customer records or launch an unreviewed multi-tenant deployment.** A complete Node 24 build and regression suite are required before any public hosting. See [docs/RELEASE_CHECKLIST.md](docs/RELEASE_CHECKLIST.md).
+This is a **pre-release Community Edition candidate**, not a security-audited production service. The Node 24 GitHub Actions verification on [PR #2](https://github.com/zg9bkbrv7p-beep/premiumplus-community/pull/2) passed dependency installation, production build, unit/API tests, **24 WebKit browser tests**, and the high/critical production dependency audit on November 3, 2026. These automated checks do not replace independent security/licensing review, tests on a physical iPhone, or production backup/restore validation. **Do not expose real customer records or launch an unreviewed multi-tenant deployment.** See the [release checklist](RELEASE_CHECKLIST.md).
 
 ## Freedom and safety
 
-Every user can download, run, change and share the code under the [AGPLv3](LICENSE), including commercially, under the license conditions. Operators offering a modified version over a network must provide corresponding source. Your project's **customer records remain yours**; do not include databases, uploads, tokens or secrets in a public source release.
+Every user can download, run, change and share the code under the [AGPLv3](../LICENSE), including commercially, under the license conditions. Operators offering a modified version over a network must provide corresponding source. Your project's **customer records remain yours**; do not include databases, uploads, tokens or secrets in a public source release.
 
 Photo-to-Remodel's photorealistic AI integration is **optional, disabled by default** and requires explicit approval and consent. A local color study is not a realistic remodel image, measurement, permit, or structural approval.
 
-PREMIUM+ is not affiliated with any third-party platform; review [TRADEMARKS.md](TRADEMARKS.md) before distributing a rebranded fork. See [CONTRIBUTING.md](CONTRIBUTING.md) and [SECURITY.md](SECURITY.md).
+PREMIUM+ is not affiliated with any third-party platform; review [TRADEMARKS.md](../TRADEMARKS.md) before distributing a rebranded fork. See [CONTRIBUTING.md](../CONTRIBUTING.md) and [SECURITY.md](../SECURITY.md).
