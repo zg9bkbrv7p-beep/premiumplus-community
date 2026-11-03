@@ -18,6 +18,9 @@ The Community Edition is being prepared separately; features and screens may cha
 
 ## Project status
 
+**Source-code preview:** [Review Community Edition RC2 code (draft pull request #2)](https://github.com/zg9bkbrv7p-beep/premiumplus-community/pull/2). This source is public for review but **not yet approved for live customer use**.
+
+
 **Release preparation — not ready for customer data or public hosting yet.**
 
 The separate Community Edition source has been prepared as a review candidate, but the full production build, security checks, real-browser tests, and multi-company privacy tests have **not** all passed. The application source will be added here after those release checks and an independent licensing/privacy review. This release-preparation repository has **screenshots and documentation, but not a runnable Community Edition app** yet.
