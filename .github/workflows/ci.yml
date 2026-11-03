@@ -1,0 +1,51 @@
+name: Community application verification
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'package.json'
+      - 'package-lock.json'
+      - 'src/**'
+      - 'server/**'
+      - 'shared/**'
+      - 'scripts/**'
+      - 'tests/**'
+      - 'playwright*.ts'
+      - 'vite.config.ts'
+      - 'vitest.config.ts'
+      - 'tsconfig.json'
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install system dependencies and npm packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y poppler-utils fonts-dejavu-core
+          npm ci --include=dev --strict-ssl=true
+      - name: Offline source verification
+        run: npm run verify:offline
+      - name: Production typecheck and build
+        run: npm run build
+      - name: Unit and API tests
+        run: npm test
+      - name: Install Playwright WebKit
+        run: npx playwright install --with-deps webkit
+      - name: Mobile browser tests
+        run: npm run test:e2e:webkit
+      - name: Production dependency security audit
+        run: npm audit --omit=dev --audit-level=high
