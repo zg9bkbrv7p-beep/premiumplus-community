@@ -57,6 +57,29 @@ The desired architecture remains: **property/photo or blueprint → scope and qu
 - Some projects provide public code with a *different* license in individual components; check the exact file/tree and dependency licenses rather than relying on GitHub's license badge.
 - Look at code for comparison. Do not clone a competitor's visual identity or proprietary assets.
 
+## Rendering engines worth auditing — 2026-11-03
+
+**Two distinct needs:** VISION's accurate 3D model rendering is not the same thing as generating a proposed remodel from a single photograph. Neither should silently replace the current editing interface.
+
+| Engine | Source | License (upstream GitHub) | Use in PREMIUM+ | Constraints |
+| --- | --- | --- | --- | --- |
+| **three-gpu-pathtracer** | https://github.com/gkjohnson/three-gpu-pathtracer | **MIT** | Upgrade realistic lighting, reflections, shadows, materials and **still export** from existing Three.js scenes | Uses WebGPU in current upstream version; high GPU cost, progressive convergence, material compatibility limits; preserve existing renderer as interactive fallback |
+| **Khronos glTF Sample Viewer** | https://github.com/KhronosGroup/glTF-Sample-Viewer | **Apache-2.0** | Reference for accurate physically-based glTF material handling and exposure controls | More a rendering reference than a finished remodeling editor |
+| **InvokeAI** | https://github.com/invoke-ai/InvokeAI | **Apache-2.0** for application; check each model's license | Separate optional **photo-to-remodel** inpainting/image-to-image service with brush-selected areas, preservation masks, and before/after review | Requires model weights + GPU compute; not a free rendering API, not automatically reliable for exact structural changes |
+| **ComfyUI** | https://github.com/Comfy-Org/ComfyUI | **GPL-3.0** for application; model and node rights vary | Alternative separate self-hosted photo rendering and automation workflow | Higher integration/operations complexity; GPL review and third-party node/model licenses; optional paid nodes must remain disabled |
+| **Blender / Cycles** | https://www.blender.org/ and https://www.cycles-renderer.org/ | Blender **GPL**; Cycles standalone **Apache-2.0** per Cycles project | Future batch-quality 3D export/snapshots after calibrated scene geometry is validated | CPU/GPU render host needed; browser does not magically run Blender's full workflow |
+
+### Preferred experiment: no surprise charges, no renderer replacement
+
+1. **VISION 3D:** test `three-gpu-pathtracer` on a **separate copy of one fictional 3D scene**. Keep interactive Three.js editor untouched. Add an optional **Render still** control only after WebGPU feature detection, clean fallbacks, performance tests, memory caps and mobile iPhone Safari verification. Safari 26+ supports WebGPU, but performance and supported materials still need testing.
+2. **Photo Preview:** research InvokeAI as an **optional, separately hosted image-render worker**, with explicit permission before uploading an image, before/after preservation, selective masks, and local/manual color preview as no-GPU fallback. Never advertise photo edits as structural measurements or permit-grade plans.
+3. **Hardware and licensing gates:** application code licenses are not equivalent to generation-model weight licenses. Verify code copyright, assets, model weights, privacy, GPU capacity, costs, and service isolation before installing or shipping.
+4. **Scope:** no paid AI, remote inference, cloud deployment, or new homeowner VISION dashboard without explicit user approval. VISION remains contractor-only; main Live Project keeps homeowner decisions.
+
+### Codex's first rendering task (read-only)
+
+> Read AGENTS.md and docs/OPEN_SOURCE_OPPORTUNITIES.md. Inspect the current VISION Three.js renderer and Photo Preview. Compare the real source architecture with three-gpu-pathtracer and InvokeAI. Recommend the smallest **optional**, reversible rendering upgrade, giving specific files, a license audit, WebGPU/iPhone fallback strategy, quality examples, privacy/data-flow risks, GPU hosting costs, automated tests and a proof-of-concept plan using only fictional scenes. **Do not install dependencies, copy code, commit, deploy, or connect paid AI.** Do not assume this public Community Edition is the live Commercial app.
+
 ## Verification gates
 
 1. Choose exactly one feature and open a feature branch.
