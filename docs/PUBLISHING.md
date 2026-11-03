@@ -1,27 +1,27 @@
-# Publishing the Community Edition
+# Publishing and maintaining PREMIUM+ Community Edition
 
-The source package is intended for a **new public repository with fresh Git history**. Never switch the existing private PREMIUM+ repositories to public or push their `.git` history.
+The public repository is **[premiumplus-community](https://github.com/zg9bkbrv7p-beep/premiumplus-community)**. Source code is already committed to the `main` branch under the AGPLv3 license. It has **fresh history separate from the private PREMIUM+ Commercial repositories**.
 
-## Before a public announcement
+## Current status — RC2 source available, not certified for customer data
 
-1. Verify that the software author(s)/copyright holder(s) authorize AGPL-3.0-only. Ensure that all third-party code/assets are licensed compatibly.
-2. Using Node.js 24+, run `npm ci`, `npm run audit:community`, `npm test`, `npm run build`, and relevant WebKit mobile tests. Resolve any failures. Run a dependency vulnerability audit (`npm audit`).
-3. Test authenticated contractor and homeowner flows, private photos, contract snapshots, PDF import, database backup, restoration and tenant isolation using **fictional** projects only.
-4. Manually review every file and commit for personal information, tokens, customer uploads and unlicensed assets.
-5. Choose a new public GitHub repository name such as `premiumplus-community`. Do not initialize it from the old private repository.
-6. Unzip this archive **outside any private repository**. Create a clean Git repository, add files, and push to the new public repository.
-7. Publish a release tagged `v0.1.0-rc1` until the complete deployment and regression checks pass.
-8. If deploying it for people to use online, provide HTTPS, secure persistent storage and a privacy notice. The `/source.html` footer/source download must remain accessible; builds regenerate its source tarball.
+The PR #2 GitHub verification passed on November 3, 2026: clean Node 24 install, offline source checks, TypeScript/Vite build, unit/API tests, 24 WebKit browser tests and an npm production dependency security audit reporting no high/critical findings.
 
-## Example Git commands after creating an empty new GitHub repo
+Remaining release gates are listed in [RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md): independent security/license review, real iPhone verification, permission testing under hostile conditions, secure hosted configuration and backup/restore exercises with **fictional** data.
 
-```bash
-git init
-git add .
-git commit -m "Initial AGPLv3 Community Edition candidate"
-git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/premiumplus-community.git
-git push -u origin main
-```
+## For developers
 
-Do not commit `.env`, `data/`, actual customer records, build logs, private backups or private authentication history. The `.gitignore` excludes common local artifacts. GitHub website access settings are managed separately from the code and ZIP files.
+1. Clone `https://github.com/zg9bkbrv7p-beep/premiumplus-community.git`.
+2. Follow [INSTALL.md](INSTALL.md) to install Node 24+ dependencies and Poppler utilities.
+3. Use fake projects and addresses for testing; do not connect real homeowner records until the production review is complete.
+4. Run `npm run verify:offline`, `npm run build`, `npm test`, `npm run test:e2e:webkit`, and `npm audit --omit=dev --audit-level=high`.
+5. Open a pull request for code changes. Do not merge a failed CI run or changes that weaken project/company authorization.
+
+## For maintainers
+
+- Never import the existing private PREMIUM+ repository history, customer databases, backups, keys, media or `.env` into this public project.
+- Keep source-download disclosure at `/source.html` intact in hosted builds; the build process creates the source tarball.
+- Verify licensing/rights of every added dependency, code sample and image.
+- Only create a version tag or announce a customer-ready hosted deployment after the release checklist is complete.
+- If sharing a hosted service, ensure HTTPS, private storage and backups, tenant isolation, authentication, a privacy policy and appropriate retention/deletion controls. Paid AI services are optional and must require consent before using customer photos.
+
+This public source release **does not touch** the original PREMIUM+ Commercial Railway service.
