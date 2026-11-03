@@ -80,6 +80,21 @@ The desired architecture remains: **property/photo or blueprint → scope and qu
 
 > Read AGENTS.md and docs/OPEN_SOURCE_OPPORTUNITIES.md. Inspect the current VISION Three.js renderer and Photo Preview. Compare the real source architecture with three-gpu-pathtracer and InvokeAI. Recommend the smallest **optional**, reversible rendering upgrade, giving specific files, a license audit, WebGPU/iPhone fallback strategy, quality examples, privacy/data-flow risks, GPU hosting costs, automated tests and a proof-of-concept plan using only fictional scenes. **Do not install dependencies, copy code, commit, deploy, or connect paid AI.** Do not assume this public Community Edition is the live Commercial app.
 
+## New FLUX 3 Image Klein comparison — November 3, 2026
+
+**Newer model identified from BFL's official website:** [FLUX 3 Image Klein](https://bfl.ai/models/flux-3-image-klein), released October 15, 2026.
+
+- [Official model weights](https://huggingface.co/black-forest-labs/flux-3-image-klein), [reference inference code](https://github.com/black-forest-labs/flux-3-image-klein), and [release information](https://bfl.ai/blog/flux-3-image-klein).
+- 5.6B image transformer, multi-reference editing with up to 10 photos, and bounding-box layout instructions for where to add or edit features. **Bounding boxes are not a hard pixel-preservation mask**; quality and geometry preservation must be tested with fictional contractor photos.
+- **Licenses are different:** the inference *code* is Apache-2.0, while the model *weights* use the FLUX Kommunity License. BFL says qualifying individual/business users under **US $5M gross annualized revenue** may use the weights commercially under specific conditions. Do not describe this model as unrestricted Apache/open-source, or bundle its weights before reviewing full license terms.
+- BFL's API offers advanced preservation features and 1K image pricing around **US $0.009/image** (as advertised November 3, 2026); paid API, third-party photo processing, and new costs require explicit approval. Self-hosting still needs GPU and secure processing.
+- Earlier recommendation [FLUX.2 klein 4B](https://huggingface.co/black-forest-labs/FLUX.2-klein-4B) is **Apache-2.0-licensed weights**, appropriate for a more permissive, reproducible Community Edition prototype.
+- **Revised recommendation:** evaluate FLUX 3 Image Klein (latest image-editing feature candidate) alongside FLUX.2 klein 4B (simpler license). Do a read-only comparison and fictional-photo benchmark before choosing an integration. Keep existing Photo Preview and Three.js editor; no models/paid services are installed.
+
+### New Codex review question
+
+> Compare FLUX 3 Image Klein against FLUX.2 klein 4B for the existing PREMIUM+ Photo Preview, specifically preservation of roofline, doors, windows, and background; region selection/bounding boxes; iPhone upload/output UX; model license restrictions; private-photo consent; and GPU or API cost. Use documented public references and fictitious test plans only. Return a file-level integration design without modifying the app, deploying, or downloading model weights.
+
 ## Recommended first photo-rendering proof of concept — November 3, 2026
 
 **Decision for evaluation, not installation: FLUX.2 [klein] 4B (distilled 4-step) + a separately hosted ComfyUI workflow.**
