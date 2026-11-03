@@ -18,9 +18,13 @@ The Community Edition is being prepared separately; features and screens may cha
 
 ## Project status
 
-**Release preparation — not ready for customer data or public hosting yet.**
+**Release candidate under review — not safe for customer data or public hosting yet.**
 
-The separate Community Edition source has been prepared as a review candidate, but the full production build, security checks, real-browser tests, and multi-company privacy tests have **not** all passed. The application source will be added here after those release checks and an independent licensing/privacy review. This release-preparation repository has **screenshots and documentation, but not a runnable Community Edition app** yet.
+The separate Community Edition source has been prepared as a review candidate, but the full production build, security checks, real-browser tests, and multi-company privacy tests have **not** all passed. The application source will be added here after those release checks and an independent licensing/privacy review. The default branch remains a showcase, while the review branch adds candidate application source. The code has not passed a complete production build or security audit.
+
+## Try the source-review branch
+
+The full candidate application source is staged on the `review/community-source-rc2` branch. Read [installation notes](docs/INSTALL.md) and [release blockers](docs/RELEASE_CHECKLIST.md) before attempting any setup. **Do not enter real client data.**
 
 ## Intended features
 

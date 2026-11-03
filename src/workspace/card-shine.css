@@ -1,0 +1,30 @@
+/* A light on the rim only. Cards, typography and hit targets never move. */
+.project-overview{--card-edge-angle:135deg;--edge-main:#d8be82c9;--edge-light:#fff9e8eb;--edge-soft:#d8be828c;--edge-second:#f6edcccf}
+.project-overview .motion-edge-card{position:relative;isolation:isolate}
+.project-overview .motion-edge-card::after{
+ content:'';position:absolute;inset:-1px;border-radius:inherit;padding:1.5px;pointer-events:none;z-index:2;
+ background:conic-gradient(from var(--card-edge-angle),transparent 0deg,#b4bfa650 36deg,var(--edge-main) 57deg,var(--edge-light) 69deg,var(--edge-soft) 81deg,transparent 114deg,transparent 180deg,#a7bea578 226deg,var(--edge-second) 249deg,transparent 290deg,transparent 360deg);
+ -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;
+ mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude;
+ opacity:.72;
+}
+.project-overview .card-shine-controls{margin-top:18px;padding-top:12px;border-top:1px solid #dfe6d6}
+.project-overview .card-shine-controls button{justify-content:flex-start;gap:8px}
+.card-shine-controls small,.card-shine-controls [role=status]{display:block;font-size:11px;line-height:1.7;color:#65735c;margin:7px 0}
+@media(prefers-reduced-motion:reduce){.project-overview .motion-edge-card::after{background:linear-gradient(135deg,#b4bfa63d,transparent 38%,var(--edge-soft) 72%,transparent);opacity:.45}}
+@media print{.project-overview .motion-edge-card::after,.card-shine-controls{display:none}}
+
+.project-overview[data-shine-color=silver]{--edge-main:#9cabbfc9;--edge-light:#f4f8ffeb;--edge-soft:#a6b4c78c;--edge-second:#d8e2edcf}
+.project-overview[data-shine-color=green]{--edge-main:#6b9c7dc9;--edge-light:#d9f4dceb;--edge-soft:#74a9818c;--edge-second:#b0d7b6cf}
+.project-overview[data-shine-color=blue]{--edge-main:#5e95d4c9;--edge-light:#deeeffeb;--edge-soft:#6faae38c;--edge-second:#afcef2cf}
+.project-overview[data-shine-color=purple]{--edge-main:#a17bc6c9;--edge-light:#f1e3ffeb;--edge-soft:#b18bda8c;--edge-second:#d6bcefcf}
+.card-shine-controls .shine-color-picker{border:0;margin:0 0 13px;padding:0;min-width:0}
+.shine-color-picker legend{font-size:12px;font-weight:600;color:#315440;margin-bottom:11px;padding:0}
+.shine-color-picker>div{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;max-width:370px}
+.shine-color-picker label{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;min-height:62px;padding:8px 2px;border:1px solid #dce3d5;border-radius:9px;background:#f9faf6;font-size:10px;color:#52674c;cursor:pointer}
+.shine-color-picker input{position:absolute;inset:0;margin:0;width:100%;height:100%;opacity:0;cursor:pointer}
+.shine-color-swatch{width:19px;height:19px;border-radius:50%;background:#d8be82;border:1px solid #72826955;pointer-events:none}
+.shine-color-picker [data-color=silver] .shine-color-swatch{background:#a6b4c7}.shine-color-picker [data-color=green] .shine-color-swatch{background:#74a981}.shine-color-picker [data-color=blue] .shine-color-swatch{background:#6faae3}.shine-color-picker [data-color=purple] .shine-color-swatch{background:#b18bda}
+.shine-color-picker label:has(input:checked){border-color:#315440;box-shadow:0 0 0 1px #315440;background:#eaf0e5;font-weight:700}
+.shine-color-picker input:checked+.shine-color-swatch{outline:2px solid #315440;outline-offset:2px}
+.shine-color-picker label:has(input:focus-visible){outline:3px solid #52784c;outline-offset:3px}
