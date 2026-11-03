@@ -10,7 +10,7 @@ PREMIUM+ Community Edition is an open-source initiative to give independent cont
 
 **Are you a roofer, fence installer, painter, remodeler, landscaper, or another tradesperson?** We're looking for **10–20 contractors** to tell us what would make estimates, proposals, project photos, and homeowner decisions easier.
 
-**[Tell us what you need — public contractor feedback thread](https://github.com/zg9bkbrv7p-beep/premiumplus-community/issues/4)**
+**[Share contractor feedback with a short form](https://github.com/zg9bkbrv7p-beep/premiumplus-community/issues/new?template=contractor-feedback.yml)** or [join the feedback conversation](https://github.com/zg9bkbrv7p-beep/premiumplus-community/issues/4).
 
 You can inspect the free open-source code today. This is still a **pre-release**, not a customer-ready hosted service: use fictional project data for testing, and don't post real homeowner addresses or private records.
 
