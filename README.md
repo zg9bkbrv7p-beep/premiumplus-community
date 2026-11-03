@@ -6,6 +6,14 @@
 
 PREMIUM+ Community Edition is an open-source initiative to give independent contractors and small remodeling businesses useful web tools for their own jobs, without a required PREMIUM+ software subscription.
 
+## Calling independent contractors: help shape this project
+
+**Are you a roofer, fence installer, painter, remodeler, landscaper, or another tradesperson?** We're looking for **10–20 contractors** to tell us what would make estimates, proposals, project photos, and homeowner decisions easier.
+
+**[Tell us what you need — public contractor feedback thread](https://github.com/zg9bkbrv7p-beep/premiumplus-community/issues/4)**
+
+You can inspect the free open-source code today. This is still a **pre-release**, not a customer-ready hosted service: use fictional project data for testing, and don't post real homeowner addresses or private records.
+
 ## See PREMIUM+ in action
 
 Screenshots from the **existing PREMIUM+ Commercial staging app** on iPhone. These are screenshots of the separate Commercial staging app, **not identical to every Community Edition screen**. Tap an image to view the full screenshot.
