@@ -80,6 +80,44 @@ The desired architecture remains: **property/photo or blueprint → scope and qu
 
 > Read AGENTS.md and docs/OPEN_SOURCE_OPPORTUNITIES.md. Inspect the current VISION Three.js renderer and Photo Preview. Compare the real source architecture with three-gpu-pathtracer and InvokeAI. Recommend the smallest **optional**, reversible rendering upgrade, giving specific files, a license audit, WebGPU/iPhone fallback strategy, quality examples, privacy/data-flow risks, GPU hosting costs, automated tests and a proof-of-concept plan using only fictional scenes. **Do not install dependencies, copy code, commit, deploy, or connect paid AI.** Do not assume this public Community Edition is the live Commercial app.
 
+## Recommended first photo-rendering proof of concept — November 3, 2026
+
+**Decision for evaluation, not installation: FLUX.2 [klein] 4B (distilled 4-step) + a separately hosted ComfyUI workflow.**
+
+This is a practical first test for a contractor taking an iPhone photo and visualizing an updated room, wall, fence, or exterior. The image editing model is not the 3D path tracer. Start with the smallest reversible prototype in the **public Community Edition only**, using fictional photographs.
+
+### Sources reviewed
+
+- Model weights and terms: https://huggingface.co/black-forest-labs/FLUX.2-klein-4B — **Apache-2.0**, image-to-image and multireference editing, official inference guidance ~13 GB VRAM (configuration dependent).
+- Official reference implementation: https://github.com/black-forest-labs/flux2 — 4B Apache-2.0, 9B / dev editions use different, noncommercial licenses. Do **not** swap editions casually.
+- ComfyUI ready-to-run image editing workflows: https://blog.comfy.org/p/flux2-klein-4b-fast-local-image-editing — distilled 4B supports short, iterative edits; example performance from a high-end RTX 5090 is **not** representative of a phone or low-cost VPS.
+- ComfyUI engine: https://github.com/Comfy-Org/ComfyUI — **GPL-3.0** software, not Apache-2.0. Review compatibility and obligations if distributing or combining code. Prefer a private, separately hosted inference service rather than embedding upstream ComfyUI source into the current Commercial app.
+- Quality fallback for later review: https://huggingface.co/Qwen/Qwen-Image-Edit-2511 — Apache-2.0 but a much larger 20B editing model (model repo roughly 57.7 GB); evaluate only if FLUX.2 4B fails quality/geometry tests.
+
+### Proposed contractor UX
+
+1. Contractor opens an existing project -> Photo Preview -> **Render Concept (optional)**.
+2. Capture or upload an original photo; save immutable original in a private per-company project record.
+3. Optionally brush a mask for a wall, fence, floor, roof, or cabinet; preserve the rest as much as possible.
+4. Pick a project-specific prompt and optional material/reference photo.
+5. Explicitly consent to processing and show a projected GPU-job cost (if any) before execution.
+6. Authenticated PREMIUM+ server submits a job to a separate GPU worker and returns a job ID. Do not expose ComfyUI's ports/API to the public.
+7. View output as **AI design concept** with before/after slider; allow reject, re-render, or save to project documents. It does not change estimate, contract, or approval automatically.
+8. Fall back to existing manual color/finish study when no renderer, GPU, network, or budget is available.
+
+### Must prove before implementing
+
+- Mask locality: does the generated image unexpectedly change doors, windows, walls, perspective, people, or structures? Label design concepts as visual only, not structural truth.
+- iPhone: capture, orientation, HEIC conversion, previews, upload progress, retry/cancel, and low-bandwidth experience. iPhone does *not* run the model; it is the front end.
+- Server: auth, per-company access isolation, upload limits, content scanning as appropriate, timeouts/queue/cancellation, private image storage and retention/deletion controls, consent to any remote provider.
+- Budget: benchmark actual GPU time and storage before committing to a hosting price. "Free weights" do not mean "free rendering compute".
+- Licensing: Apache-2.0 model, GPL-3.0 ComfyUI engine, any node/LoRA/upscaler/model dependencies; preserve notices and distinguish networked service versus copied derivative.
+- No paid account, inference, hosting, auto-deployment or production integration is authorized by this research.
+
+### Copy/paste first Codex task
+
+> READ-ONLY: Audit current public PREMIUM+ Community Edition Photo Preview and existing server architecture against a hypothetical optional FLUX.2 [klein] 4B image editing worker in ComfyUI. Keep existing UI/Three.js and all Commercial services unchanged. Report precise file touchpoints, how masks/reference photos should flow, secure image job API boundary, a standalone mock response, isolated licensing obligations (Apache-2.0 and ComfyUI GPL-3.0), iPhone Safari tests, GPU cost assumptions, and sample prompts for fictional interiors/exteriors. Do not install dependencies, send photos, create cloud resources, modify code, or deploy. Wait for explicit feature implementation approval.
+
 ## Verification gates
 
 1. Choose exactly one feature and open a feature branch.
