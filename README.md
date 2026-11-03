@@ -2,6 +2,8 @@
 
 **Professional tools for the people who do the work.**
 
+[![Community CI](https://github.com/zg9bkbrv7p-beep/premiumplus-community/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/zg9bkbrv7p-beep/premiumplus-community/actions/workflows/ci.yml)
+
 PREMIUM+ Community Edition is an open-source initiative to give independent contractors and small remodeling businesses useful web tools for their own jobs, without a required PREMIUM+ software subscription.
 
 ## See PREMIUM+ in action
@@ -23,6 +25,10 @@ Community Edition features may differ from these Commercial staging previews.
 The source is now included on the `main` branch under the [AGPLv3 license](LICENSE). Automated verification succeeded on [pull request #2](https://github.com/zg9bkbrv7p-beep/premiumplus-community/pull/2): clean Node.js 24 dependency install, TypeScript/Vite production build, unit/API tests, all **24 WebKit browser tests**, and a production dependency audit for high/critical findings.
 
 **Still required before real customer use:** independent security and third-party licensing review, physical iPhone testing, hosting/privacy hardening, and backup/restore testing on a fresh deployment. This source release does **not** mean customer information is ready to be entrusted to a public host.
+
+## Get the source
+
+**[Download the Community Edition source ZIP](https://github.com/zg9bkbrv7p-beep/premiumplus-community/archive/refs/heads/main.zip)** — source code to inspect or install on your own computer. This is not a hosted customer-ready service.
 
 ## Install your own copy
 
