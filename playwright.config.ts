@@ -19,7 +19,7 @@ export default defineConfig({
     screenshot: "only-on-failure",
   },
   webServer: {
-    command: `PORT=3100 DATABASE_PATH=${database} node --import tsx server/index.ts`,
+    command: `NODE_ENV=test PREMIUM_E2E_MODE=1 PORT=3100 DATABASE_PATH=${database} node --import tsx server/index.ts`,
     url: "http://localhost:3100/api/health",
     reuseExistingServer: false,
     timeout: 30000,

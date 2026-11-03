@@ -5,7 +5,7 @@ async function openProject(page:any,baseURL:string){
  const response=await page.request.post('/api/projects',{headers:{Origin:baseURL,'X-CSRF-Token':csrf},data:{name:'Persistent shine QA'}});expect(response.status()).toBe(201);
  await page.goto('/');await page.locator('.contractor-project-row').filter({hasText:'Persistent shine QA'}).click();
 }
-async function controls(page:any){await page.locator('.project-advanced').evaluate((e:HTMLDetailsElement)=>{e.open=true;});}
+async function controls(page:any){await page.locator('details.project-advanced:not(.contractor-operations)').evaluate((e:HTMLDetailsElement)=>{e.open=true;});}
 async function moves(page:any){
  const gradient=()=>page.locator('.project-details-panel').evaluate((e:Element)=>getComputedStyle(e,'::after').backgroundImage);
  const orient=async(gamma:number)=>{await page.evaluate((g:number)=>{const e=new Event('deviceorientation');Object.defineProperties(e,{gamma:{value:g},beta:{value:30}});window.dispatchEvent(e);},gamma);await page.evaluate(()=>new Promise<void>(r=>requestAnimationFrame(()=>r())));};

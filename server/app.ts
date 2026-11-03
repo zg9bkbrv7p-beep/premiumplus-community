@@ -35,6 +35,10 @@ export function createApp(
   if (secure && !publicUrl.startsWith("https://"))
     throw Error("Production requires an HTTPS PUBLIC_URL");
   const origin = new URL(publicUrl).origin;
+  // E2E-only fixture allowance: never active in production or on a public origin.
+  const browserFixtureMode = process.env.NODE_ENV === "test" &&
+    process.env.PREMIUM_E2E_MODE === "1" &&
+    /^http:\/\/localhost(?::\d+)?$/.test(origin);
   app.disable("x-powered-by");
   app.use((_req, res, next) => {
     res.set({
@@ -206,7 +210,7 @@ export function createApp(
   }
   app.get("/api/health", (_req, res) => res.json({ ok: true }));
   app.post("/api/auth/register", (req, res) => {
-    limited("register:" + req.ip, 15);
+    limited("register:" + req.ip, browserFixtureMode ? 200 : 15);
     const b = z
       .object({
         name: text(100),

@@ -62,7 +62,7 @@ test('real raster plan stays local and a PDF plan is rejected honestly',async({p
   expect(reg.ok()).toBeTruthy();const auth=await reg.json();
   const created=await page.request.post('/api/projects',{headers:{Origin:'http://localhost:3100','X-CSRF-Token':auth.csrf},data:{name:'Raster House'}});
   expect(created.ok()).toBeTruthy();const project=await created.json();
-  await page.goto(`/?project=${project.id}&tab=design`);
+  await page.goto(`/?project=${project.id}&tab=remodel`);
   await expect(page.getByRole('heading',{name:'Start with your property.',exact:true})).toBeVisible();
   await page.locator('.photo-advanced summary').click();
   await page.getByRole('button',{name:'Measure from a plan',exact:true}).click();
