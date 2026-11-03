@@ -37,6 +37,10 @@ The separate Community Edition source has been prepared as a review candidate, b
 - No required PREMIUM+ software subscription; independent hosting, storage, email, or optional third-party services may incur costs.
 - Community contributions are welcome after the first verified release.
 
+## Help build the Community Edition
+
+Want better tools for real contractor jobs? Start with the [contribution guide](CONTRIBUTING.md) or follow [the first public release milestone](https://github.com/zg9bkbrv7p-beep/premiumplus-community/issues/1). Please use fictional examples in public bug reports and screenshots.
+
 ## Release gate
 
 Before releasing or hosting code: verify ownership and third-party licenses; audit for credentials and customer data; run Node 24 dependency install, build, unit/API tests, browser tests, and a dependency security audit; validate tenant isolation, authentication, backups, and PDFs.
