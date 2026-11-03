@@ -18,7 +18,7 @@ async function setup(page: Page) {
     .getByRole("button", { name: "New project", exact: true })
     .first()
     .click();
-  await page.getByLabel("Project name").fill("Review House");
+  await page.getByLabel("Project name", { exact: true }).fill("Review House");
   await page.getByLabel("Site address").fill("100 Test Lane");
   await page
     .getByRole("button", { name: "Create project", exact: true })
@@ -148,7 +148,7 @@ test("project details can be corrected and persist after reload", async ({
   await page
     .getByRole("button", { name: "Edit project details", exact: true })
     .click();
-  await page.getByLabel("Project name").fill("Corrected House");
+  await page.getByLabel("Project name", { exact: true }).fill("Corrected House");
   await page.getByLabel("Site address").fill("12 Correct Lane");
   await page
     .getByRole("button", { name: "Save project details", exact: true })
