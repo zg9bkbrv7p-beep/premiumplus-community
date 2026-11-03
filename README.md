@@ -18,6 +18,9 @@ The Community Edition is being prepared separately; features and screens may cha
 
 ## Project status
 
+**Source-code review:** [Draft pull request #2](https://github.com/zg9bkbrv7p-beep/premiumplus-community/pull/2) contains the candidate source. Automated tests and independent review are still required.
+
+
 **Release candidate under review — not safe for customer data or public hosting yet.**
 
 The separate Community Edition source has been prepared as a review candidate, but the full production build, security checks, real-browser tests, and multi-company privacy tests have **not** all passed. The application source will be added here after those release checks and an independent licensing/privacy review. The default branch remains a showcase, while the review branch adds candidate application source. The code has not passed a complete production build or security audit.
