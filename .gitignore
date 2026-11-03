@@ -1,0 +1,26 @@
+# Local secrets and user records
+.env
+.env.*
+!.env.example
+data/
+uploads/
+backups/
+*.sqlite
+*.sqlite3
+*.db
+*.db-wal
+*.db-shm
+
+# Dependencies and compiled output
+node_modules/
+dist/
+build/
+coverage/
+playwright-report/
+test-results/
+*.log
+
+# OS/editor
+.DS_Store
+.idea/
+.vscode/
