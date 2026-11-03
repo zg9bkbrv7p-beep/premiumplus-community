@@ -1,0 +1,21 @@
+import {test,expect} from '@playwright/test';
+test('contractor can estimate and manage live project requests on mobile',async({page})=>{
+ await page.setViewportSize({width:390,height:844});
+ const registration=await page.request.post('/api/auth/register',{headers:{Origin:'http://localhost:3100'},data:{name:'Commercial QA',company:'Commercial QA',email:`commercial-${Date.now()}@example.test`,password:'fictional-password-2026'}});expect(registration.ok()).toBeTruthy();const auth=await registration.json();
+ const created=await page.request.post('/api/projects',{headers:{Origin:'http://localhost:3100','X-CSRF-Token':auth.csrf},data:{name:'Independent remodel',address:'Test site',description:''}});expect(created.ok()).toBeTruthy();const p=await created.json();
+ await page.goto(`/?project=${p.id}&tab=estimate`);
+ await expect(page.getByRole('heading',{name:'Make the scope measurable.'})).toBeVisible();
+ await page.getByLabel('Flooring material material rate',{exact:true}).fill('5');
+ await page.getByRole('button',{name:'Save estimate snapshot',exact:false}).click();
+ await expect(page.getByText('Immutable estimate snapshot saved.')).toBeVisible();
+ await page.getByRole('button',{name:'Generate proposal'}).click();
+ await expect(page.getByLabel('Proposal title')).toBeVisible();
+ await page.getByRole('button',{name:'Live Project',exact:true}).click();
+ await page.getByText('Request a decision',{exact:true}).click();
+ await page.getByLabel('Title',{exact:true}).fill('Confirm access to the property');
+ await page.getByRole('button',{name:'Send request'}).click();
+ await expect(page.getByRole('article').filter({hasText:'Confirm access to the property'})).toBeVisible();
+ await page.reload();
+ await expect(page.getByRole('article').filter({hasText:'Confirm access to the property'})).toBeVisible();
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBeTruthy();
+});
