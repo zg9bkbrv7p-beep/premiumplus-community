@@ -1,0 +1,68 @@
+.pdf-review {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+}
+.pdf-review p {
+  line-height: 1.6;
+  font-size: 13px;
+}
+.pdf-upload,
+.pdf-section {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--border, #dce3da);
+  border-radius: 12px;
+  background: var(--ivory, #fafaf5);
+}
+.pdf-review label {
+  display: grid;
+  gap: 8px;
+  font-size: 13px;
+}
+.pdf-section > label:first-child {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+}
+.pdf-review input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  accent-color: #1d523d;
+}
+.pdf-review input:not([type="checkbox"]),
+.pdf-review textarea {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid #d4ded5;
+  border-radius: 8px;
+  background: white;
+  color: #193b2c;
+  font: inherit;
+}
+.pdf-review textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+.pdf-review pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-height: 240px;
+  overflow: auto;
+  font-size: 12px;
+}
+.pdf-warnings {
+  padding: 12px;
+  background: #f5f0dd;
+  border-radius: 10px;
+}
+.pdf-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}

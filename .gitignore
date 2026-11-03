@@ -24,3 +24,6 @@ test-results/
 .DS_Store
 .idea/
 .vscode/
+
+# Generated source download (rebuilt by npm run build)
+public/source-code.tar.gz

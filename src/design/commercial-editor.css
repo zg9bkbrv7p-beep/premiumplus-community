@@ -1,0 +1,24 @@
+.editor-options { display:flex; gap:20px; flex-wrap:wrap; padding:10px 20px; background:#f5f4eb; border-bottom:1px solid #dde2d8; color:#365444; font-size:12px; }
+.editor-options label { display:flex; align-items:center; gap:8px; }
+.editor-options select,.studio-inspector select,.version-tools input,.version-tools select { border:1px solid #ced8cc; border-radius:5px; background:#fffef7; color:#365444; padding:6px; max-width:100%; }
+.version-tools { padding:16px 0; display:grid; gap:9px; }
+.version-tools button { border:1px solid #ced8cc; border-radius:5px; padding:8px; background:#f4f5eb; color:#365444; }
+.comparison-panes { display:grid; grid-template-columns:1fr 1fr; width:100%; height:100%; min-height:450px; }
+.comparison-panes section { display:flex; flex-direction:column; min-width:0; border-right:1px solid #ced8cc; }
+.comparison-panes h4 { margin:0; padding:12px; background:#f4f5eb; color:#365444; }
+.comparison-panes .scene-host { flex:1; min-height:380px; }
+.plan-canvas,.scene-host canvas { touch-action:none; }
+@media(max-width:650px) {.comparison-panes {grid-template-columns:1fr;} }
+
+/* Integrated contractor-only, Fusion-inspired wall geometry builder. */
+.studio-wall-builder{background:#f6f8f2;border:1px solid #ccdacf;border-radius:15px;padding:16px;margin:12px 0 14px;color:#294b3b}
+.studio-wall-builder-heading{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px 12px}
+.studio-wall-builder-heading strong{font-size:1.02rem}
+.studio-wall-builder-heading span,.studio-wall-builder small{color:#738477;font-size:.8rem}
+.studio-wall-builder-fields{display:flex;align-items:end;flex-wrap:wrap;gap:10px;margin:12px 0}
+.studio-wall-builder-fields label{display:flex;flex:1 1 90px;min-width:80px;max-width:160px;flex-direction:column;gap:4px;font-size:.82rem;font-weight:600}
+.studio-wall-builder-fields input{width:100%;min-height:42px;box-sizing:border-box;border:1px solid #c6d1c6;border-radius:8px;padding:9px;background:#fff;color:#244939;font-size:16px}
+.studio-wall-builder-fields button{min-height:42px;white-space:nowrap}
+.plan-lab-measured-wall{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin:8px 0;padding:6px 0;border-bottom:1px solid #e2e9df}
+.plan-lab-measured-wall button{min-height:40px}
+@media(max-width:520px){.studio-wall-builder{padding:13px}.studio-wall-builder-fields label{flex:1 1 28%}.studio-wall-builder-fields button{flex:1 1 100%}}

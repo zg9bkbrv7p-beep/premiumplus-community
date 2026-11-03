@@ -1,0 +1,80 @@
+import {test,expect} from '@playwright/test';
+import {readFile} from 'node:fs/promises';
+import sharp from 'sharp';
+
+test.use({hasTouch:true});
+
+test('measurements are optional advanced tools and preserve working scale math',async({page})=>{
+  await page.setViewportSize({width:390,height:844});
+  const registration=await page.request.post('/api/auth/register',{headers:{Origin:'http://localhost:3100'},data:{name:'Plan Lab QA',company:'Plan Lab QA',email:`planlab-${Date.now()}@example.test`,password:'fictional-password-2026'}});
+  expect(registration.ok()).toBeTruthy();
+  const auth=await registration.json();
+  const created=await page.request.post('/api/projects',{headers:{Origin:'http://localhost:3100','X-CSRF-Token':auth.csrf},data:{name:'Fictional fence trial',address:'Fictional address',description:''}});
+  expect(created.ok()).toBeTruthy();
+  const project=await created.json();
+  await page.goto(`/?project=${project.id}&tab=remodel`);
+  await expect(page.getByRole('heading',{name:'Start with your property.'})).toBeVisible();
+  await expect(page.locator('.plan-lab')).toHaveCount(0);
+  await expect(page.getByText('Export reviewed plan JSON')).toHaveCount(0);
+  await page.locator('.photo-advanced summary').click();
+  await page.getByRole('button',{name:'Measure from a plan',exact:true}).click();
+  await expect(page.getByRole('heading',{name:'Advanced measurements'})).toBeVisible();
+  await expect(page.getByRole('button',{name:'Explore in 3D'})).toHaveCount(0);
+  await expect(page.getByRole('button',{name:'Try fictional example'})).toHaveCount(0);
+  const raster=await sharp({create:{width:1000,height:660,channels:3,background:'#e1eae1'}}).png().toBuffer();
+  await page.locator('.plan-lab input[type=file]').setInputFiles({name:'Contractor plan.png',mimeType:'image/png',buffer:raster});
+  await expect(page.getByText('Contractor plan.png',{exact:true})).toBeVisible();
+  const canvas=page.getByRole('img',{name:'Plot plan image; tap two points to calibrate or measure'}).or(page.locator('canvas'));
+  const tap=async(x:number,y:number)=>{
+    await canvas.first().scrollIntoViewIfNeeded();
+    const box=await canvas.first().boundingBox();
+    expect(box).not.toBeNull();
+    await page.touchscreen.tap(box!.x+box!.width*x/1000,box!.y+box!.height*y/660);
+  };
+  await tap(200,170);await tap(600,170);
+  await page.getByPlaceholder('e.g. 40').fill('40');
+  await page.getByRole('button',{name:'Set scale'}).click();
+  await expect(page.getByText('CALIBRATED',{exact:true})).toBeVisible();
+  await tap(250,210);await tap(350,210);
+  const length=page.getByRole('status').filter({hasText:'Estimated length:'});
+  await expect(length).toBeVisible();
+  // Mobile pointer coordinates round to physical pixels; the domain test proves exact scale math.
+  expect(Math.abs(Number((await length.textContent())!.match(/length: ([\d.]+)/)![1])-10)).toBeLessThan(0.2);
+  const downloaded=page.waitForEvent('download');
+  await page.getByRole('button',{name:'Export reviewed plan JSON',exact:true}).click();
+  const file=await downloaded;
+  const exported=JSON.parse(await readFile((await file.path())!,'utf8'));
+  expect(exported.origin.existingProjectId).toBe(project.id);
+  expect(exported.plot.units).toBe('feet');
+  expect(exported.plot.measurements).toHaveLength(1);
+  expect(Math.abs(exported.plot.measurements[0].feet-10)).toBeLessThan(0.2);
+  expect(exported.warnings.join(' ')).toContain('does not save to the application database');
+  const saved=await (await page.request.get('/api/projects/'+project.id)).json();
+  expect(saved.plan).toEqual(project.plan);
+  expect(saved.revision).toBe(project.revision);
+  await page.getByRole('button',{name:'Proposal',exact:true}).click();
+  await expect(page.getByRole('button',{name:'Proposal',exact:true})).toBeVisible();
+});
+
+test('real raster plan stays local and a PDF plan is rejected honestly',async({page})=>{
+  await page.setViewportSize({width:390,height:844});
+  const reg=await page.request.post('/api/auth/register',{headers:{Origin:'http://localhost:3100'},data:{name:'Raster QA',company:'Raster QA',email:`raster-${Date.now()}@example.test`,password:'fictional-password-2026'}});
+  expect(reg.ok()).toBeTruthy();const auth=await reg.json();
+  const created=await page.request.post('/api/projects',{headers:{Origin:'http://localhost:3100','X-CSRF-Token':auth.csrf},data:{name:'Raster House'}});
+  expect(created.ok()).toBeTruthy();const project=await created.json();
+  await page.goto(`/?project=${project.id}&tab=remodel`);
+  await expect(page.getByRole('heading',{name:'Start with your property.',exact:true})).toBeVisible();
+  await page.locator('.photo-advanced summary').click();
+  await page.getByRole('button',{name:'Measure from a plan',exact:true}).click();
+  const input=page.locator('.plan-lab input[type=file]');
+  await input.setInputFiles({name:'plan.pdf',mimeType:'application/pdf',buffer:Buffer.from('%PDF-1.7\n')});
+  await expect(page.getByRole('alert')).toContainText('For a PDF proposal use Import PDF');
+  const png=await sharp({create:{width:1000,height:660,channels:3,background:'#e1eae1'}}).png().toBuffer();
+  await input.setInputFiles({name:'Measured site.png',mimeType:'image/png',buffer:png});
+  await expect(page.getByText('Measured site.png',{exact:true})).toBeVisible();
+  await expect(page.getByRole('button',{name:'Measure',exact:true})).toBeDisabled();
+  await expect(page.getByRole('status')).toContainText('opened on this device');
+  expect((await (await page.request.get('/api/projects/'+project.id)).json()).plan).toEqual(project.plan);
+  expect((await (await page.request.get('/api/projects/'+project.id+'/live')).json()).files).toHaveLength(0);
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBeTruthy();
+});

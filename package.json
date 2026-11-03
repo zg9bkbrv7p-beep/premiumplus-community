@@ -1,0 +1,49 @@
+{
+  "name": "premiumplus-community",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx server/index.ts",
+    "start": "tsx server/index.ts",
+    "build": "node scripts/bundle-source.mjs && tsc --noEmit && vite build",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "test:e2e:webkit": "playwright test --config playwright.webkit.config.ts",
+    "test:e2e:remodel": "playwright test --config playwright.remodel.config.ts",
+    "source:bundle": "node scripts/bundle-source.mjs",
+    "audit:community": "node scripts/audit-community.mjs",
+    "test:offline": "node --test scripts/test-offline-core.cjs",
+    "check:syntax": "node scripts/check-syntax.cjs",
+    "verify:offline": "npm run source:bundle && npm run check:syntax && npm run test:offline && npm run audit:community"
+  },
+  "dependencies": {
+    "@fontsource/dm-sans": "^5.3.0",
+    "@fontsource/manrope": "^5.3.0",
+    "@pdf-lib/fontkit": "1.1.1",
+    "express": "^5.1.0",
+    "lucide-react": "^0.468.0",
+    "pdf-lib": "1.17.1",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "sharp": "^0.35.5",
+    "three": "^0.180.0",
+    "tsx": "^4.23.0",
+    "zod": "^4.1.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.0",
+    "@types/express": "^5.0.0",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@types/supertest": "^6.0.0",
+    "@types/three": "^0.180.0",
+    "supertest": "^7.1.0",
+    "typescript": "^5.9.0",
+    "vite": "^7.1.0",
+    "vitest": "^5.0.5"
+  },
+  "license": "AGPL-3.0-only",
+  "description": "Community-owned web tools for independent contractors and their customers"
+}
