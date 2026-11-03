@@ -1,0 +1,3 @@
+import{defineConfig}from'@playwright/test';import{randomUUID}from'node:crypto';import{join}from'node:path';import{tmpdir}from'node:os';
+const database=join(tmpdir(),'commercial-corrections-'+randomUUID()+'.sqlite');
+export default defineConfig({testDir:'tests/corrections-browser',workers:1,timeout:45000,metadata:{database},globalTeardown:'./tests/db-teardown.ts',outputDir:'test-results-corrections',use:{baseURL:'http://localhost:3102',browserName:'webkit',headless:true,hasTouch:true,viewport:{width:390,height:844},screenshot:'only-on-failure'},webServer:{command:`PORT=3102 DATABASE_PATH=${database} node --import tsx server/index.ts`,url:'http://localhost:3102/api/health',reuseExistingServer:false}});
