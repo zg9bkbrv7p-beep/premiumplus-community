@@ -1,0 +1,65 @@
+name: Contractor feedback
+description: Tell us which real-world contractor workflows PREMIUM+ should improve.
+title: "[Contractor feedback] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping improve PREMIUM+ Community Edition. This repository is public. **Do not include any real homeowner details, property addresses, payment information, phone numbers, or private photos.** Use fictional examples.
+  - type: dropdown
+    id: trade
+    attributes:
+      label: Your trade
+      description: Select the closest match.
+      options:
+        - Fencing
+        - Roofing
+        - Painting and drywall
+        - Remodeling
+        - Landscaping and lawn care
+        - HVAC
+        - Flooring
+        - Property management
+        - Other trade
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is your biggest paperwork or job-tracking problem?
+      description: Explain the task that takes too much time or money.
+      placeholder: I currently track homeowner change requests in text messages and lose decisions...
+    validations:
+      required: true
+  - type: dropdown
+    id: current
+    attributes:
+      label: What do you use today?
+      options:
+        - Paper or handwritten notes
+        - Spreadsheet
+        - Phone notes and texts
+        - Paid contractor software
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: interest
+    attributes:
+      label: What would you try first?
+      options:
+        - Estimates and proposals
+        - PDF import
+        - Project photos
+        - Homeowner decisions and change orders
+        - Job tracking and schedules
+        - Something else
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Privacy reminder
+      options:
+        - label: I am sharing no real customer or other private information.
+          required: true
