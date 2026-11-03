@@ -38,6 +38,10 @@ The source is now included on the `main` branch under the [AGPLv3 license](LICEN
 
 **[Download the Community Edition source ZIP](https://github.com/zg9bkbrv7p-beep/premiumplus-community/archive/refs/heads/main.zip)** — source code to inspect or install on your own computer. This is not a hosted customer-ready service.
 
+## Work on the code with Codex
+
+**[Set up Codex for this Community Edition](docs/CODEX_START.md)**. The repository also includes [Codex project instructions](AGENTS.md) covering tests, privacy, and safe changes. Codex should not assume this source is identical to the private Commercial staging app.
+
 ## Install your own copy
 
 Follow the [Community Edition installation guide](docs/INSTALL.md) and [release checklist](docs/RELEASE_CHECKLIST.md).
