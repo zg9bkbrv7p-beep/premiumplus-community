@@ -6,7 +6,7 @@ PREMIUM+ Community Edition is an open-source initiative to give independent cont
 
 ## See PREMIUM+ in action
 
-Screenshots from the **existing PREMIUM+ Commercial staging app** on iPhone. These are product previews, **not evidence that the Community Edition is released or installable yet**. Tap an image to view the full screenshot.
+Screenshots from the **existing PREMIUM+ Commercial staging app** on iPhone. These are screenshots of the separate Commercial staging app, **not identical to every Community Edition screen**. Tap an image to view the full screenshot.
 
 | Project overview | Photo Preview |
 |:---:|:---:|
@@ -14,20 +14,27 @@ Screenshots from the **existing PREMIUM+ Commercial staging app** on iPhone. The
 | **Proposal editor** | **Live Project** |
 | <a href="IMG_8363.png"><img src="IMG_8363.png" alt="PREMIUM+ Commercial proposal editor and PDF import controls" width="350"></a> | <a href="IMG_8366.png"><img src="IMG_8366.png" alt="PREMIUM+ Commercial Live Project decisions and milestones" width="350"></a> |
 
-The Community Edition is being prepared separately; features and screens may change before its first tested public release.
+Community Edition features may differ from these Commercial staging previews.
 
 ## Project status
 
-**Source-code review:** [Draft pull request #2](https://github.com/zg9bkbrv7p-beep/premiumplus-community/pull/2) contains the candidate source. Automated tests and independent review are still required.
+**Public source available — Community Edition v0.1.0 RC2 (pre-release).**
 
+The source is now included on the `main` branch under the [AGPLv3 license](LICENSE). Automated verification succeeded on [pull request #2](https://github.com/zg9bkbrv7p-beep/premiumplus-community/pull/2): clean Node.js 24 dependency install, TypeScript/Vite production build, unit/API tests, all **24 WebKit browser tests**, and a production dependency audit for high/critical findings.
 
-**Release candidate under review — not safe for customer data or public hosting yet.**
+**Still required before real customer use:** independent security and third-party licensing review, physical iPhone testing, hosting/privacy hardening, and backup/restore testing on a fresh deployment. This source release does **not** mean customer information is ready to be entrusted to a public host.
 
-The separate Community Edition source has been prepared as a review candidate, but the full production build, security checks, real-browser tests, and multi-company privacy tests have **not** all passed. The application source will be added here after those release checks and an independent licensing/privacy review. The default branch remains a showcase, while the review branch adds candidate application source. The code has not passed a complete production build or security audit.
+## Install your own copy
 
-## Try the source-review branch
+Follow the [Community Edition installation guide](docs/INSTALL.md) and [release checklist](docs/RELEASE_CHECKLIST.md).
 
-The full candidate application source is staged on the `review/community-source-rc2` branch. Read [installation notes](docs/INSTALL.md) and [release blockers](docs/RELEASE_CHECKLIST.md) before attempting any setup. **Do not enter real client data.**
+```bash
+npm ci
+cp .env.example .env
+npm run dev
+```
+
+Requires Node.js 24+ and Poppler utilities for PDF import. Use fictional test projects until the remaining checks are complete.
 
 ## Intended features
 
@@ -39,7 +46,7 @@ The full candidate application source is staged on the `review/community-source-
 
 ## Principles
 
-- **Free to use, inspect, modify and share** under the AGPLv3 license when the covered source is released.
+- **Free to use, inspect, modify and share** under the AGPLv3 license.
 - Your business and customer records belong to you; never commit customer data, passwords, secrets, photos, or databases into a public repository.
 - No required PREMIUM+ software subscription; independent hosting, storage, email, or optional third-party services may incur costs.
 - Community contributions are welcome after the first verified release.
@@ -50,7 +57,7 @@ Want better tools for real contractor jobs? Start with the [contribution guide](
 
 ## Release gate
 
-Before releasing or hosting code: verify ownership and third-party licenses; audit for credentials and customer data; run Node 24 dependency install, build, unit/API tests, browser tests, and a dependency security audit; validate tenant isolation, authentication, backups, and PDFs.
+Before hosting with real customer information: complete independent source and asset licensing review; validate cross-company permissions, production authentication, backups, PDF imports, image privacy, and on-device workflows. Automated tests do not replace operational security review.
 
 **This repository is separate from the private PREMIUM+ Commercial service and repositories. No customer database or private configuration is included in this repository. Screenshots are public and may show example project details.**
 
