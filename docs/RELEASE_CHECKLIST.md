@@ -12,10 +12,12 @@ This page is a **required verification checklist**. A checked box requires recor
 - [x] Run `npm run verify:offline`, `npm run build`, `npm test`
 - [x] Install and run Playwright WebKit browser tests
 - [x] Run `npm audit --omit=dev --audit-level=high`, fix all high/critical findings
-- [x] Automated API role/company isolation tests with fictional records passed\n- [ ] Independent adversarial privacy/security review of company boundaries and file access
+- [x] Automated API role/company isolation tests with fictional records passed
+- [ ] Independent adversarial privacy/security review of company boundaries and file access
 - [ ] Verify PDF importing, saved proposals, acceptance, documents, photo workflows, database backup and restore
 - [ ] Verify setup on iPhone Safari and desktop
 - [x] Publish reviewed application source to this repository and get a green CI workflow
-- [ ] Tag a tested release and publish real installation instructions
+- [x] Publish initial installation instructions in `docs/INSTALL.md`
+- [ ] Tag a verified pre-release after an independent license and security review
 
 **Automated checks passed on November 3, 2026 (24/24 WebKit browser tests).** Independent security and licensing review, physical iPhone validation and fresh-host backup/recovery testing still remain. **Not yet certified for public hosting or real customer data.**
